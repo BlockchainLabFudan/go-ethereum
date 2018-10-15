@@ -1,4 +1,4 @@
-##How to create a private Ethereum network
+## How to create a private Ethereum network
 
 
 安装go-ethereum：https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum 
@@ -15,7 +15,7 @@ geth --datadir=/path/to/data --bootnodes=enode://148f3....@127.0.0.1:3031
 并在step4输入exit后重新attach 
 
 
-##STEP 1: SET UP A VIRTUAL SERVER AND INSTALL ETHEREUM COMMAND-LINE TOOLS
+## STEP 1: SET UP A VIRTUAL SERVER AND INSTALL ETHEREUM COMMAND-LINE TOOLS
 
 Many tutorials guide you through deploying contracts using the Ethereum wallet GUI. I’m using the Go Ethereum client (geth) and encourage others to learn how to use the command line interface (CLI). The better you understand the Ethereum client’s internal workings and the anatomy of a blockchain, the more power to you. It doesn’t matter which hosting service you use,  but these instructions assume you’re running an Ubuntu server. [Geth Installation instructions for Ubuntu] 
 
@@ -33,7 +33,7 @@ mkdir data
 mkdir source
 ```
 
-##STEP 2: CREATE GENESIS BLOCK
+## STEP 2: CREATE GENESIS BLOCK
 
 The genesis block is the first block of any blockchain and its parameters are specified in “genesis.json”, which I saved under /root/ucsfnet/genesis.json. My genesis block looks something like this:
 ```
@@ -75,7 +75,7 @@ bootnode --nodekey=boot.key
 Pay attention to the enode address that the previous commands results. You’ll need this for the next step.
 
 
-##STEP 3: CONNECT TO YOUR EXTERNALLY REACHABLE BOOTNODE
+## STEP 3: CONNECT TO YOUR EXTERNALLY REACHABLE BOOTNODE
 The bootnode you created in the previous step is externally reachable, and in this step we’re going to connect to that node to create a one-node network. As you go through this tutorial and expand your knowledge of Ethereum networking, you’ll be able to add infinitely many nodes to your private network. The following commands create the geth.ipc file you’ll need to interact with your network in the subsequent steps. However after completing this tutorial, you’ll be able to skip this step the next time you connect to your network if you’re developing/testing and not using any networking protocols.
 
 Open a new terminal window:
@@ -89,7 +89,7 @@ geth --datadir=/root/ucsfnet/data --bootnodes=enode://148f3....@101.102.103.104:
 Replace 148f3…. above with the enode address from Step 2. Make sure to include the enode://  prefix.
 
 
-##STEP 4: CREATE A NEW ACCOUNT AND CHECK YOUR BALANCE
+## STEP 4: CREATE A NEW ACCOUNT AND CHECK YOUR BALANCE
 
 Start by opening a new terminal window and connecting to your virtual server via SSH:
 
@@ -109,7 +109,7 @@ You’ll notice that there are no account addresses yet. Now you’ll create you
 Remember your account’s address, which is prefixed by “0x”. Notice that your account has zero Ether, but don’t be discouraged. I’ll soon turn you into an Ethereum billionaire (but alas, the Ether you collect on your private network is only good on your private network).
 
 
-##STEP 5: MINE ON YOUR PRIVATE NETWORK
+## STEP 5: MINE ON YOUR PRIVATE NETWORK
 
 The purpose of mining here is two-fold. First you create Ether which you’ll need to power your transaction through gas (an Ethereum sub-unit). Second, mining incorporates your transactions into the blockchain. Open a new terminal window and connect to your private server:
 
@@ -121,7 +121,7 @@ geth --datadir=/root/ucsfnet/data --mine --minerthreads=1 --etherbase=0x...
 The etherbase parameter specifies the address which should receive the Ether you generate by mining. This should contain your wallet address from Step 4. If you check your account balance again (Step 4), you’ll find that you quickly became a billionaire. Congratulations! Again, the Ether you generate on your private network is only good on your private network, but that’s OK. Your newfound knowledge of how to develop for Ethereum is more valuable than all the Ether in the world.
 
 
-##STEP 6: COMPILE A SIMPLE CONTRACT
+## STEP 6: COMPILE A SIMPLE CONTRACT
 
 Unfortunately, the official Ethereum documentation has not been updated to reflect the fact that compiling using the solC compiler is no longer possible via RPC. This means that you will end up in a rabbit hole if you try to follow the instructions on the official Ethereum documentation and many other tutorials based on official documentation. There are 2 ways to compile contracts, and I encourage you do try both so you understand what’s going on under the hood.
 
@@ -189,7 +189,7 @@ Open both files using vim or your text editor of choice to see what they contain
 Alternatively, you can use the online compiler. This is easier because you can just copy-paste your Solidity code. However both methods are equivalent, and I’ll elaborate on this below. Copy and paste the code in greeter.sol (above) into the online compiler. Give it a second, and then click on the “Contract details…” link. Notice that the contents of the Bytecode field are equivalent to the greeter.bin file that you created using solC. Also notice that the Interface field is equivalent to the contents of the greeter.abi file you created when you compiled using the command-line solC compiler.
 
 
-##STEP 7: DEPLOY A “GREETER” CONTRACT TO YOUR PRIVATE NETWORK
+## STEP 7: DEPLOY A “GREETER” CONTRACT TO YOUR PRIVATE NETWORK
 
 Copy the contents of the Web3 deploy field in the online compiler. Paste them into a text editor on your computer and note the bolded changes I made:
 
@@ -260,7 +260,7 @@ Make a note of this. You’ll need your contract’s address to interact with it
 If this didn’t work, make sure you’re actively mining in another window so that your transaction is incorporated into the blockchain.
 
 
-##STEP 8: INTERACTING WITH A CONTRACT
+## STEP 8: INTERACTING WITH A CONTRACT
 
 Again, this is another place where the Ethereum documentation hasn’t yet been updated and refers to deprecated functions. With your geth client fired up, try the following:
 
@@ -290,7 +290,7 @@ Big caveat: geth chokes if any of your inputs contain illegal characters. Id est
 ‘ (illegal) is not equal to ' (legal) 
 ```
 
-##CONCLUSION
+## CONCLUSION
 
 We covered a lot of ground here, from setting up your own Ethereum network to compiling your contract (and avoiding rabbit holes created by outdated documentation) to deploying the contract and interacting with it. Whew! If you ever get stuck and need to start over, just reboot your server and delete your blockchain (understanding the implications of what this means…):
 
