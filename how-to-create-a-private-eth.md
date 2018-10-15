@@ -1,18 +1,18 @@
 ## How to create a private Ethereum network
 
 
-安装go-ethereum：https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum 
-安装solidity：https://solidity.readthedocs.io/en/latest/installing-solidity.html#building-from-source 
+安装go-ethereum：https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum
+安装solidity：https://solidity.readthedocs.io/en/latest/installing-solidity.html#building-from-source
 
-搭建私链教程地址：https://omarmetwally.blog/2017/07/25/how-to-create-a-private-ethereum-network/ 
+搭建私链教程地址：https://omarmetwally.blog/2017/07/25/how-to-create-a-private-ethereum-network/
 需要注意的地方： 
-1.step2中genesis.json需要修改gasLimit为0xffffffff 
-2.step3中 bootnodes=enode://148f3....@101.102.103.104:3031 修改为本地地址bootnodes=enode://148f3....@127.0.0.1:3031 
+1.step2中genesis.json需要修改gasLimit为0xffffffff
+2.step3中 bootnodes=enode://148f3....@101.102.103.104:3031 修改为本地地址bootnodes=enode://148f3....@127.0.0.1:3031
 3.step5中不需要重新开一个终端， 直接中断step3中的终端 
-在原先的命令 
+在原先的命令
 geth --datadir=/path/to/data --bootnodes=enode://148f3....@127.0.0.1:3031 
-后加上--mine --minerthreads=1 --etherbase=0x… 选项 
-并在step4输入exit后重新attach 
+后加上--mine --minerthreads=1 --etherbase=0x… 选项
+并在step4输入exit后重新attach
 
 
 ## STEP 1: SET UP A VIRTUAL SERVER AND INSTALL ETHEREUM COMMAND-LINE TOOLS
